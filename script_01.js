@@ -12,36 +12,59 @@
 
 
 
-// startApp();
+startApp();
 
 function startApp() {
     ausgabe(rechner(getZahl1(),getOp(),getZahl2())); 
   }
   
-  function getZahl1() {
-     return 10; 
+    function getZahl1() {
+        let zahl = parseFloat(prompt("Bitte geben sie eine Zahl ein:"));
+        
+        while (!isitaNumber(zahl)) {
+            zahl = parseFloat(prompt("Bitte geben sie eine Zahl ein:"))
+        } return zahl;
   }
   
-  function getZahl2() {
-      return 4; 
+    function getZahl2() {
+        let zahl = parseFloat(prompt("Bitte geben sie eine Zahl ein:"));
+        
+        while (!isitaNumber(zahl)) {
+            zahl = parseFloat(prompt("Bitte geben sie eine Zahl ein:"))
+        } return zahl;
    }
   
    // Modul: Operand eingeben | Test:
-   ausgabe(getOp());
+
    function getOp() {
-       return "-";
+        let op = prompt("Was möchten sie rechnen? Bitte +,-, * oder / eingeben");
+       
+        while (!isOpValid(op)) {
+            op = prompt("Was möchten sie rechnen? Bitte +,-, * oder / eingeben");
+        } 
+        return op;
+   }
+
+   function isOpValid(op) {
+        switch (op) {
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+                return true;
+            default:
+                return false;
+        }
    }
    
+   function isitaNumber(zahl) {
+       if (isNaN(zahl)) {
+           return false;
+       } return true;
+   }
   
   // Modul: Rechenart auswählen | Tests:
-  // ausgabe(rechner(10,"+",4));
-  // ausgabe(rechner(10,"-",4));
-  // ausgabe(rechner(10,"*",4));
-  // ausgabe(rechner(10,"/",4));
-  // ausgabe(rechner(10,"/",0));
-  // ausgabe(rechner(10,"#!?",0));
   function rechner(a,op,b) {  
-      // a,b --> Operanden / Operatoren: +,- ..
       switch (op) {
           case "+":
               return addieren(a,b);
@@ -57,11 +80,7 @@ function startApp() {
   }
   
   // Modul: Division a / b |  Test:
-  // ausgabe(dividieren(4,2));
-  // ausgabe(dividieren(4,-2));
-  // ausgabe(dividieren(1,4));
-  // ausgabe(dividieren(0,2));
-  // ausgabe(dividieren(2,0));
+
   function dividieren(a,b) {
   
       // kürzer, besser
@@ -70,44 +89,31 @@ function startApp() {
       }
       return "Division durch 0 nicht OK!";
   
-      // ausführlich
-      // if (b == 0) {
-      //     return "Division durch 0 nicht OK!"
-      // } else {
-      //     return a / b; 
-      // }
-  
   }
   
   // Modul: Multiplikation a * b |  Test:
-  // ausgabe(multiplizieren(2,1));
-  // ausgabe(multiplizieren(2,0));
   function multiplizieren(a,b) {
       return a * b;
   }
   
   // Modul: Subtraktion a - b |  Test:
-  // ausgabe(subtrahieren(2,1));
-  // ausgabe(subtrahieren(2,10));
   function subtrahieren(a,b) {
       return a - b;
   }
   
   // Modul: Addition a + b |  Test:
-  // ausgabe(addieren(2,1));
   function addieren(a,b) {
       return a + b;
   }
   
   // Modul: Konsolenausgabe |  Test:
-  // ausgabe("Hallo Welt!")
-  // ausgabe(20);
+
   function ausgabe(outputStr) {
      
-      // if (typeof outputStr == typeof 1) { 
       if (typeof outputStr === "number") { 
           outputStr = "Das Ergebnis ist: " + outputStr;
       }
   
       console.log(outputStr);
+      alert(outputStr);
   }
