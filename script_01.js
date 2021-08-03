@@ -15,31 +15,35 @@
 startApp();
 
 function startApp() {
-    ausgabe(rechner(getZahl1(),getOp(),getZahl2())); 
+    ausgabe(rechner(getZahl("1"),getOp(),getZahl("2"))); 
   }
-  
-    function getZahl1() {
-        let zahl = parseFloat(prompt("Bitte geben sie eine Zahl ein:"));
+
+    function getZahl(numStr) {
+
+        const displayStr = "Bitte geben sie Zahl " + numStr + " ein:";
+        let ziffer = prompt(displayStr)
+        let zahl = parseFloat(ziffer);
         
-        while (!isitaNumber(zahl)) {
-            zahl = parseFloat(prompt("Bitte geben sie eine Zahl ein:"))
+        while (isNaN(zahl) && (ziffer !== null)) {
+            zahl = parseFloat(prompt(displayStr))
         } return zahl;
   }
-  
+
+  /*
     function getZahl2() {
         let zahl = parseFloat(prompt("Bitte geben sie eine Zahl ein:"));
         
-        while (!isitaNumber(zahl)) {
+        while (isNaN(zahl) && (zahl !== null)) {
             zahl = parseFloat(prompt("Bitte geben sie eine Zahl ein:"))
         } return zahl;
-   }
+   } */
   
    // Modul: Operand eingeben | Test:
 
    function getOp() {
         let op = prompt("Was möchten sie rechnen? Bitte +,-, * oder / eingeben");
        
-        while (!isOpValid(op)) {
+        while (!isOpValid(op) && (zahl !== null)) {
             op = prompt("Was möchten sie rechnen? Bitte +,-, * oder / eingeben");
         } 
         return op;
@@ -57,12 +61,14 @@ function startApp() {
         }
    }
    
+   /*
    function isitaNumber(zahl) {
        if (isNaN(zahl)) {
            return false;
        } return true;
    }
-  
+  */
+
   // Modul: Rechenart auswählen | Tests:
   function rechner(a,op,b) {  
       switch (op) {
